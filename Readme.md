@@ -2,7 +2,7 @@
 # socket.io
 
 [![Backers on Open Collective](https://opencollective.com/socketio/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/socketio/sponsors/badge.svg)](#sponsors)
-[![Build Status](https://secure.travis-ci.org/socketio/socket.io.svg?branch=master)](https://travis-ci.org/socketio/socket.io)
+[![Build Status](https://github.com/socketio/socket.io/workflows/CI/badge.svg)](https://github.com/socketio/socket.io/actions)
 [![Dependency Status](https://david-dm.org/socketio/socket.io.svg)](https://david-dm.org/socketio/socket.io)
 [![devDependency Status](https://david-dm.org/socketio/socket.io/dev-status.svg)](https://david-dm.org/socketio/socket.io#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/socket.io.svg)](https://www.npmjs.com/package/socket.io)
@@ -64,7 +64,7 @@ io.on('connection', socket => {
 
 #### Cross-browser
 
-Browser support is tested in Saucelabs:
+Browser support is tested in Sauce Labs:
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/socket.svg)](https://saucelabs.com/u/socket)
 
@@ -136,6 +136,19 @@ const server = require('http').createServer(app.callback());
 const io = require('socket.io')(server);
 io.on('connection', () => { /* … */ });
 server.listen(3000);
+```
+
+### In conjunction with Fastify
+
+To integrate Socket.io in your Fastify application you just need to
+register `fastify-socket.io` plugin. It will create a `decorator`
+called `io`.
+
+```js
+const app = require('fastify')();
+app.register(require('fastify-socket.io'));
+app.io.on('connection', () => { /* … */ });
+app.listen(3000);
 ```
 
 ## Documentation
